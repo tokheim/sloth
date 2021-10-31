@@ -24,15 +24,9 @@ jobs:
         with:
           version: v3.4.0
 
-      - name: Create chart structure
-        run: ./scripts/helmstructure.sh
-
-      - name: Test workflow
-        run: find charts/
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
         with:
-          charts_dir: charts
+          charts_dir: deploy/kubernetes/helm
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
